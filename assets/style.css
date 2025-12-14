@@ -1,0 +1,68 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 18px;
+  color: #222;
+}
+header {
+  margin-bottom: 18px;
+}
+nav a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: #0066cc;
+}
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  width: 220px;
+  border-radius: 6px;
+}
+.card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.noimg {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+  border-radius: 4px;
+}
+.cart {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cart th,
+.cart td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+button {
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid #888;
+  background: #eee;
+  cursor: pointer;
+}
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+}
+label {
+  display: block;
+  margin: 8px 0;
+}
