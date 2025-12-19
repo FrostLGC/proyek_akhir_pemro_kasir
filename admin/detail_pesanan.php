@@ -42,5 +42,9 @@ $det = mysqli_query($conn, "SELECT dp.*, m.nama_menu FROM detail_pesanan dp JOIN
     echo '<li>'.htmlspecialchars($d['nama_menu']).' x'.$d['jumlah'].' - Rp '.number_format($d['subtotal'],0,',','.').'</li>'; } 
   ?>
 </ul>
+<p>
+  Kembali Ke 
+  <a href="dashboard.php">Dashboard</a>
+</p>
 </body>
 </html>
