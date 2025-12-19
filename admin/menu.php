@@ -1,7 +1,14 @@
 <?php
 session_start();
 require_once __DIR__ . '/../config/database.php';
-if (!isset($_SESSION['admin'])) { header('Location: ../admin/login.php'); exit; }
+if (!isset($_SESSION['admin'])) {
+    header('Location: ../public/login.php');
+    exit;
+}
+if ($_SESSION['admin']['role'] !== 'admin') {
+    echo "Akses ditolak. Hanya admin yang boleh mengelola menu.";
+    exit;
+}
 if (isset($_POST['add'])){
     $nama = mysqli_real_escape_string($conn,$_POST['nama_menu']);
     $harga = intval($_POST['harga']);
