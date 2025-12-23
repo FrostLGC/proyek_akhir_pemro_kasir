@@ -29,16 +29,23 @@ $p = mysqli_query($conn, "SELECT * FROM pesanan ORDER BY created_at DESC");
     <th>Status</th>
     <th>Aksi</th>
   </tr>
-<?php 
-while($r = mysqli_fetch_assoc($p)){ 
-  echo 
-  '<tr>
-  <td>'.$r['kode'].'</td>
-  <td>'.$r['nama_pemesan'].'</td>
-  <td>'.number_format($r['total_harga']).'</td>
-  <td>'.$r['status'].'</td>
-  <td><a href="../admin/detail_pesanan.php?id='.$r['id'].'">Detail</a></td>
-  </tr>'; } ?>
+
+<?php while($r = mysqli_fetch_assoc($p)){ ?>
+<tr>
+  <td><?php echo $r['kode']; ?></td>
+  <td><?php echo htmlspecialchars($r['nama_pemesan']); ?></td>
+  <td><?php echo number_format($r['total_harga']); ?></td>
+  <td><?php echo ucfirst($r['status']); ?></td>
+  <td>
+    <a href="../admin/detail_pesanan.php?id=<?php echo $r['id']; ?>">Detail</a>
+
+    <?php if ($_SESSION['admin']['role'] === 'kasir' && $r['status'] === 'diantar'): ?>
+      | <a href="bayar.php?id=<?php echo $r['id']; ?>">Bayar</a>
+    <?php endif; ?>
+  </td>
+</tr>
+<?php } ?>
+
 </table>
 </body>
 </html>
