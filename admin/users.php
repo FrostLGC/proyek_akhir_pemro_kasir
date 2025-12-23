@@ -56,6 +56,8 @@ $users = mysqli_query($conn, "SELECT * FROM users ORDER BY role, nama");
             <select name="role" required>
                 <option value="kasir">Kasir</option>
                 <option value="admin">Admin</option>
+                <option value="dapur">Dapur</option>
+                <option value="waiter">Waiter</option>
             </select>
             <button type="submit" name="add" class="btn btn-primary">
                 Tambah User
