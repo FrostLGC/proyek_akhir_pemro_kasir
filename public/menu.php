@@ -15,7 +15,11 @@ $res = mysqli_query($conn, $sql);
 <body>
 <header>
   <h1>Menu</h1>
-  <nav><a href="../public/index.php">Home</a> | <a href="../public/keranjang.php">Keranjang</a></nav>
+  <nav>
+    <a href="../public/index.php">Home</a> | 
+    <a href="../public/keranjang.php">Keranjang</a>|
+    <a href="riwayat_pesanan.php">Riwayat</a>
+  </nav>
 </header>
 <main>
 <div class="cards">
