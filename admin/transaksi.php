@@ -29,7 +29,7 @@ $q = mysqli_query($conn, "SELECT t.*, p.kode FROM transaksi t JOIN pesanan p ON 
     <td><?php echo number_format($r['kembali']); ?></td>
     <td><?php echo $r['created_at']; ?></td>
     <td>
-        <a href="/admin/print_struk.php?id=<?php echo $r['pesanan_id']; ?>" target="_blank">
+        <a href="print_struk.php?id=<?php echo $r['pesanan_id']; ?>" target="_blank">
             Cetak Struk
         </a>
     </td>
