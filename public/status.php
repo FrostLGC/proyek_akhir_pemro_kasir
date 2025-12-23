@@ -40,6 +40,10 @@ if ($kode) {
     ?>
   </ul>
 <?php } ?>
+<p>
+  Kembali Ke 
+  <a href="index.php">Menu</a>
+</p>
 </main>
 </body>
 </html>
