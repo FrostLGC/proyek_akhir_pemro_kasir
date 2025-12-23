@@ -18,19 +18,53 @@ $pes = mysqli_query($conn,
     <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
+
 <h1>Halo, <?php echo htmlspecialchars($_SESSION['admin']['nama']); ?></h1>
 <p>Role: <b><?php echo ucfirst($role); ?></b></p>
+
 <nav>
-    <?php if ($role === 'admin'): ?>
-        <a href="menu.php">Kelola Menu</a> |
-        <a href="kategori.php">Kategori</a> |
-        <a href="users.php">Users</a> |
-    <?php endif; ?>
+<?php if ($role === 'admin'): ?>
+    <a href="menu.php">Kelola Menu</a> |
+    <a href="kategori.php">Kategori</a> |
+    <a href="users.php">Users</a> |
+    <a href="pesanan.php">Pesanan</a> |
+    <a href="transaksi.php">Laporan</a> |
+<?php endif; ?>
+
+<?php if ($role === 'kasir'): ?>
+    <a href="pos.php">Buat Pesanan</a> |
     <a href="pesanan.php">Pesanan</a> |
     <a href="transaksi.php">Transaksi</a> |
-    <a href="pos.php">Buat Pesanan</a> |
+<?php endif; ?>
+
+<?php if ($role === 'dapur'): ?>
+    <a href="dapur.php">Pesanan Masuk Dapur</a> |
+<?php endif; ?>
+
+<?php if ($role === 'waiter'): ?>
+    <a href="waiter.php">Pesanan Siap Antar</a> |
+<?php endif; ?>
+
     <a href="logout.php">Logout</a>
 </nav>
+
+<hr>
+
+<?php
+if ($role === 'admin') {
+    echo "<p>Anda masuk sebagai <b>Admin</b>. Silakan kelola sistem.</p>";
+}
+if ($role === 'kasir') {
+    echo "<p>Anda masuk sebagai <b>Kasir</b>. Silakan buat dan proses pesanan.</p>";
+}
+if ($role === 'dapur') {
+    echo "<p>Anda masuk sebagai <b>Bagian Dapur</b>. Silakan memproses pesanan.</p>";
+}
+if ($role === 'waiter') {
+    echo "<p>Anda masuk sebagai <b>Waiter</b>. Silakan mengantarkan pesanan.</p>";
+}
+?>
+
 <h3>Pesanan Terbaru</h3>
 <table border="1">
 <tr>
@@ -50,5 +84,6 @@ $pes = mysqli_query($conn,
 </tr>
 <?php } ?>
 </table>
+
 </body>
 </html>
