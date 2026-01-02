@@ -50,7 +50,7 @@ $pdf->Cell(0,5,'Struk: '.$pes['kode'],0,1);
 $pdf->Cell(0,5,'Tanggal: '.$pes['created_at'],0,1);
 $pdf->Cell(0,5,'Nama: '.$pes['nama_pemesan'],0,1);
 
-// tampilkan meja hanya jika ada
+// tampilkan meja jika ada
 if (!empty($pes['meja'])) {
     $pdf->Cell(0,5,'Meja: '.$pes['meja'],0,1);
 }
@@ -60,6 +60,8 @@ $pdf->Cell(0,3,'-------------------------------------------------------',0,1,'C'
 
 // Detail item
 while ($row = mysqli_fetch_assoc($det)) {
+
+    // item utama
     $pdf->Cell(
         0,
         5,
@@ -67,7 +69,20 @@ while ($row = mysqli_fetch_assoc($det)) {
         0,
         1
     );
+
+    // catatan (jika ada)
+    if (!empty($row['catatan'])) {
+        $pdf->SetFont('Arial','I',8);
+        $pdf->MultiCell(
+            0,
+            4,
+            '  Catatan: '.$row['catatan'],
+            0
+        );
+        $pdf->SetFont('Arial','',9);
+    }
 }
+
 
 $pdf->Ln(1);
 $pdf->Cell(0,3,'-------------------------------------------------------',0,1,'C');
