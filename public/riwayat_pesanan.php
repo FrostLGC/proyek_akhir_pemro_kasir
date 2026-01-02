@@ -10,8 +10,8 @@ if (!isset($_SESSION['customer'])) {
 $customer_id = $_SESSION['customer']['id'];
 
 $pesanan = mysqli_query($conn,
-    "SELECT * FROM pesanan 
-     WHERE customer_id = $customer_id 
+    "SELECT * FROM pesanan
+     WHERE customer_id = $customer_id
      ORDER BY created_at DESC"
 );
 
@@ -26,19 +26,29 @@ function label($s){
     };
 }
 ?>
-<!doctype html>
+
+<!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Riwayat Pesanan</title>
-<link rel="stylesheet" href="../assets/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riwayat Pesanan</title>
+  <link rel="stylesheet" href="../assets/style.css">
 </head>
+
 <body>
 
-<h2>Riwayat Pesanan</h2>
-<a href="menu.php">Kembali ke Menu</a>
+<header>
+  <h2>Riwayat Pesanan</h2>
+  <nav>
+    <a href="menu.php">Menu</a>
+    <a href="index.php">Home</a>
+  </nav>
+</header>
 
-<table border="1" cellpadding="8" cellspacing="0" width="100%">
+<main>
+
+<table>
 <tr>
   <th>Kode</th>
   <th>Detail Pesanan</th>
@@ -47,40 +57,46 @@ function label($s){
   <th>Tanggal</th>
 </tr>
 
-<?php while($p = mysqli_fetch_assoc($pesanan)){ ?>
+<?php while ($p = mysqli_fetch_assoc($pesanan)): ?>
 
 <?php
-  // ambil detail item per pesanan
-  $detail = mysqli_query($conn,
-      "SELECT dp.jumlah, m.nama_menu
-       FROM detail_pesanan dp
-       JOIN menu m ON dp.menu_id = m.id
-       WHERE dp.pesanan_id = {$p['id']}"
-  );
+$detail = mysqli_query($conn,
+    "SELECT dp.jumlah, dp.catatan, m.nama_menu
+     FROM detail_pesanan dp
+     JOIN menu m ON dp.menu_id = m.id
+     WHERE dp.pesanan_id = {$p['id']}"
+);
 ?>
 
 <tr>
-  <td><?php echo $p['kode']; ?></td>
+  <td><?= $p['kode'] ?></td>
 
   <td>
-    <ul style="margin:0; padding-left:18px;">
-      <?php while($d = mysqli_fetch_assoc($detail)){ ?>
+    <ul style="margin:0; padding-left:16px;">
+      <?php while ($d = mysqli_fetch_assoc($detail)): ?>
         <li>
-          <?php echo htmlspecialchars($d['nama_menu']); ?>
-          x<?php echo $d['jumlah']; ?>
-        </li>
-      <?php } ?>
+  <?= htmlspecialchars($d['nama_menu']) ?> x<?= $d['jumlah'] ?>
+  <?php if (!empty($d['catatan'])): ?>
+    <br>
+    <small style="color:#555;">
+      Catatan: <?= htmlspecialchars($d['catatan']) ?>
+    </small>
+  <?php endif; ?>
+</li>
+
+      <?php endwhile; ?>
     </ul>
   </td>
 
-  <td>Rp <?php echo number_format($p['total_harga'],0,',','.'); ?></td>
-  <td><?php echo label($p['status']); ?></td>
-  <td><?php echo $p['created_at']; ?></td>
+  <td>Rp <?= number_format($p['total_harga'],0,',','.') ?></td>
+  <td><?= label($p['status']) ?></td>
+  <td><?= $p['created_at'] ?></td>
 </tr>
 
-<?php } ?>
+<?php endwhile; ?>
 
 </table>
 
+</main>
 </body>
 </html>

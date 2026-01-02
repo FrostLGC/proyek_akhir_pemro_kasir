@@ -27,19 +27,30 @@ $pesanan = mysqli_query($conn,
      ORDER BY created_at ASC"
 );
 ?>
-<!doctype html>
+
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dapur</title>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
-<h2>Pesanan Masuk Dapur</h2>
-<a href="dashboard.php">Dashboard</a>
+<header>
+  <h2>Cafe AHMF - Dapur</h2>
+  <nav>
+    <a href="dashboard.php">Dashboard</a>
+    <a href="logout.php">Logout</a>
+  </nav>
+</header>
 
-<table border="1" cellpadding="8">
+<main>
+
+<h2>Pesanan Masuk Dapur</h2>
+
+<table>
 <tr>
   <th>Kode</th>
   <th>Nama</th>
@@ -51,22 +62,24 @@ $pesanan = mysqli_query($conn,
 
 <?php while($p = mysqli_fetch_assoc($pesanan)){ ?>
 <tr>
-  
   <td><?php echo $p['kode']; ?></td>
   <td><?php echo htmlspecialchars($p['nama_pemesan']); ?></td>
-  <td><?php echo $p['meja']; ?></td>
+  <td><?php echo $p['meja'] ?: '-'; ?></td>
   <td><?php echo ucfirst($p['status']); ?></td>
-  <td><a href="detail_pesanan.php?id=<?php echo $p['id']; ?>"> Lihat</a></td>
-    <td>
+  <td><a href="detail_pesanan.php?id=<?php echo $p['id']; ?>">Lihat</a></td>
+  <td>
     <?php if ($p['status'] === 'menunggu'): ?>
-      <a href="?id=<?php echo $p['id']; ?>&aksi=proses">Proses</a>
+      <a class="btn" href="?id=<?php echo $p['id']; ?>&aksi=proses">Proses</a>
     <?php elseif ($p['status'] === 'diproses'): ?>
-      <a href="?id=<?php echo $p['id']; ?>&aksi=selesai">Selesai</a>
+      <a class="btn" href="?id=<?php echo $p['id']; ?>&aksi=selesai">Selesai</a>
     <?php endif; ?>
   </td>
 </tr>
 <?php } ?>
+
 </table>
 
+</main>
 </body>
+
 </html>

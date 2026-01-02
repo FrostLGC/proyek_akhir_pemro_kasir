@@ -45,42 +45,47 @@ if (isset($_POST['bayar'])) {
     }
 }
 ?>
-<!doctype html>
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pembayaran</title>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
+<header>
+  <h2>Cafe AHMF - Kasir</h2>
+  <nav>
+    <a href="dashboard.php">Dashboard</a>
+    <a href="logout.php">Logout</a>
+  </nav>
+</header>
+
+<main>
+
 <h2>Pembayaran Pesanan <?php echo $pes['kode']; ?></h2>
+
 <?php if (!empty($success)): ?>
 <script>
-    window.open(
-        'print_struk.php?id=<?php echo $id; ?>',
-        '_blank'
-    );
-
-    // balik ke dashboard kasir
-    setTimeout(function () {
-        window.location.href = 'dashboard.php';
-    }, 1000);
+  window.open('print_struk.php?id=<?php echo $id; ?>', '_blank');
+  setTimeout(() => window.location.href = 'pesanan.php', 1000);
 </script>
-
-<p style="color:green;">
-    Pembayaran berhasil. Struk dibuka di tab baru.
-</p>
+<p style="color:green;">Pembayaran berhasil. Struk dibuka di tab baru.</p>
 <?php endif; ?>
+
 <p>Total: <b>Rp <?php echo number_format($pes['total_harga'],0,',','.'); ?></b></p>
+
 <?php if (!empty($error)) echo "<p style='color:red'>$error</p>"; ?>
+
 <form method="post">
-    <label>Uang Bayar:</label><br>
-    <input type="number" name="jumlah_bayar" required><br><br>
-    <button type="submit" name="bayar">Bayar</button>
+  <label>Uang Bayar</label>
+  <input type="number" name="jumlah_bayar" required>
+  <button type="submit" name="bayar">Bayar</button>
 </form>
 
-<p><a href="dashboard.php">Kembali</a></p>
-
+</main>
 </body>
+
 </html>

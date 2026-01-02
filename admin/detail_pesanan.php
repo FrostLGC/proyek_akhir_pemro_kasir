@@ -24,38 +24,43 @@ $det = mysqli_query($conn,
      WHERE dp.pesanan_id={$id}"
 );
 ?>
-<!doctype html>
+
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Detail Pesanan</title>
 <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
 
-<h1>Detail Pesanan <?php echo $pes['kode']; ?></h1>
+<header>
+  <h2>Detail Pesanan</h2>
+  <nav>
+    <a href="dashboard.php">Dashboard</a>
+    <a href="pesanan.php">Pesanan</a>
+    <a href="logout.php">Logout</a>
+  </nav>
+</header>
 
-<p>Nama: <?php echo htmlspecialchars($pes['nama_pemesan']); ?></p>
-<p>Meja: <?php echo $pes['meja'] ? htmlspecialchars($pes['meja']) : '-'; ?></p>
-<p>Status: <b><?php echo ucfirst($pes['status']); ?></b></p>
+<main>
+
+<h3>Kode: <?php echo $pes['kode']; ?></h3>
+
+<p><strong>Nama:</strong> <?php echo htmlspecialchars($pes['nama_pemesan']); ?></p>
+<p><strong>Meja:</strong> <?php echo $pes['meja'] ? htmlspecialchars($pes['meja']) : '-'; ?></p>
+<p><strong>Status:</strong> <?php echo ucfirst($pes['status']); ?></p>
 
 <?php if ($role === 'kasir' && $pes['status'] === 'diantar'): ?>
-    <p>
-        <a href="bayar.php?id=<?php echo $pes['id']; ?>">
-            Proses Pembayaran
-        </a>
-    </p>
+  <a class="btn" href="bayar.php?id=<?php echo $pes['id']; ?>">Proses Pembayaran</a>
 <?php endif; ?>
 
 <?php if (($role === 'admin' || $role === 'kasir') && $pes['status'] === 'dibayar'): ?>
-    <p>
-        <a href="print_struk.php?id=<?php echo $pes['id']; ?>" target="_blank">
-            Cetak Struk PDF
-        </a>
-    </p>
+  <a class="btn" href="print_struk.php?id=<?php echo $pes['id']; ?>" target="_blank">
+    Cetak Struk
+  </a>
 <?php endif; ?>
-
-
 
 <?php if ($role === 'dapur'): ?>
     <?php if ($pes['status'] === 'menunggu'): ?>
@@ -71,20 +76,25 @@ $det = mysqli_query($conn,
 
 <hr>
 
-<h3>Detail Item</h3>
+<h4>Detail Item</h4>
 <ul>
 <?php while($d = mysqli_fetch_assoc($det)){ ?>
-  <li>
-    <?php echo htmlspecialchars($d['nama_menu']); ?>
-    x<?php echo $d['jumlah']; ?>
-    – Rp <?php echo number_format($d['subtotal'],0,',','.'); ?>
-  </li>
+<li>
+  <strong><?php echo htmlspecialchars($d['nama_menu']); ?></strong>
+  x<?php echo $d['jumlah']; ?>
+  - Rp <?php echo number_format($d['subtotal'],0,',','.'); ?>
+
+  <?php if (!empty($d['catatan'])): ?>
+    <br>
+    <em style="color:#555;">
+      Catatan: <?php echo htmlspecialchars($d['catatan']); ?>
+    </em>
+  <?php endif; ?>
+</li>
 <?php } ?>
 </ul>
 
-<p>
-  Kembali ke <a href="dashboard.php">Dashboard</a>
-</p>
-
+</main>
 </body>
+
 </html>

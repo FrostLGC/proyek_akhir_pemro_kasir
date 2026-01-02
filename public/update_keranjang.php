@@ -14,16 +14,12 @@ if (!isset($_SESSION['cart'][$index])) {
     exit;
 }
 
-// ===================
-// TAMBAH JUMLAH
-// ===================
+// tambah jumlah
 if ($aksi === 'tambah') {
     $_SESSION['cart'][$index]['jumlah']++;
 }
 
-// ===================
-// KURANGI JUMLAH
-// ===================
+// kurangi jumlah
 elseif ($aksi === 'kurang') {
     $_SESSION['cart'][$index]['jumlah']--;
 
@@ -35,9 +31,7 @@ elseif ($aksi === 'kurang') {
     }
 }
 
-// ===================
-// HAPUS ITEM
-// ===================
+// hapus item
 elseif ($aksi === 'hapus') {
     unset($_SESSION['cart'][$index]);
     $_SESSION['cart'] = array_values($_SESSION['cart']);
@@ -45,9 +39,7 @@ elseif ($aksi === 'hapus') {
     exit;
 }
 
-// ===================
-// UPDATE SUBTOTAL
-// ===================
+// update total
 $_SESSION['cart'][$index]['subtotal'] =
     $_SESSION['cart'][$index]['jumlah'] *
     $_SESSION['cart'][$index]['harga'];
