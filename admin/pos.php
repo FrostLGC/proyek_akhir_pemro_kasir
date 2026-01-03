@@ -3,7 +3,7 @@ session_start();
 require_once __DIR__ . '/../config/database.php';
 
 if (!isset($_SESSION['admin'])) {
-    header('Location: ../public/login.php');
+    header('Location: ../login.php');
     exit;
 }
 
@@ -12,7 +12,7 @@ $res = mysqli_query($conn,"
     SELECT m.*, k.nama AS kategori
     FROM menu m
     LEFT JOIN kategori k ON m.kategori_id = k.id
-    ORDER BY k.nama ASC, m.nama_menu ASC
+    ORDER BY k.id ASC, m.nama_menu ASC
 ");
 
 // proses submit pos

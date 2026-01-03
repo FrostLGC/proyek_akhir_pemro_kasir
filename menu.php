@@ -1,11 +1,11 @@
   <?php
   session_start();
-  require_once __DIR__ . '/../config/database.php';
+  require_once __DIR__ . '/config/database.php';
 
   $sql = "SELECT m.*, k.nama AS kategori
           FROM menu m
           LEFT JOIN kategori k ON m.kategori_id = k.id
-          ORDER BY k.nama ASC, m.nama_menu ASC";
+          ORDER BY k.id ASC, m.nama_menu ASC";
   $res = mysqli_query($conn, $sql);
   ?>
 
@@ -15,7 +15,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu</title>
-    <link rel="stylesheet" href="../assets/style.css">
+    <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
 
@@ -52,7 +52,7 @@
 
     <div class="card">
       <?php if ($row['foto']): ?>
-        <img src="../uploads/gambar_menu/<?= htmlspecialchars($row['foto']) ?>">
+        <img src="uploads/gambar_menu/<?= htmlspecialchars($row['foto']) ?>">
       <?php else: ?>
         <div class="noimg">No Image</div>
       <?php endif; ?>
