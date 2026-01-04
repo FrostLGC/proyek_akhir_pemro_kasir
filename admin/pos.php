@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['items'])) {
 <body>
 
 <header>
-  <h2>Cafe AHMF - POS Kasir</h2>
+  <h2>POS Kasir</h2>
   <nav>
     <a href="dashboard.php">Dashboard</a>
     <a href="logout.php">Logout</a>

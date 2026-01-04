@@ -16,7 +16,7 @@ $q = mysqli_query($conn, "SELECT t.*, p.kode FROM transaksi t JOIN pesanan p ON 
 <body>
 
 <header>
-  <h2>Cafe AHMF - Transaksi</h2>
+  <h2>Laporan Data Transaksi</h2>
   <nav>
     <a href="dashboard.php">Dashboard</a>
     <a href="logout.php">Logout</a>

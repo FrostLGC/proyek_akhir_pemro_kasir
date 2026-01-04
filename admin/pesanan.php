@@ -21,7 +21,7 @@ $p = mysqli_query($conn, "SELECT * FROM pesanan ORDER BY created_at DESC");
 <body>
 
 <header>
-  <h2>Cafe AHMF - Pesanan</h2>
+  <h2>Daftar Pesanan</h2>
   <nav>
     <a href="dashboard.php">Dashboard</a>
     <a href="logout.php">Logout</a>
