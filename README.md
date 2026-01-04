@@ -1,5 +1,5 @@
 ## **Proyek akhir pemrograman web 2, membuat proyek mendekati real.** 
-Proyek Sistem Kasir ini dibuat oleh 
+Proyek Sistem Kasir Cafe ini dibuat oleh 
 Alva Herbart Miftahul Firdaus
 221011402335
 07TPLP007
