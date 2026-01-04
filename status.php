@@ -111,7 +111,7 @@ function labelStatus($s){
 <?php endif; ?>
 
 <p>
-  <a href="index.php">Kembali ke Home</a>
+  <a href="menu.php">Kembali ke menu</a>
 </p>
 
 </main>
