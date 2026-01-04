@@ -1,4 +1,4 @@
-## ** Proyek akhir pemrograman web 2, membuat proyek mendekati real.
+## **Proyek akhir pemrograman web 2, membuat proyek mendekati real.** 
 Proyek Sistem Kasir ini dibuat oleh 
 Alva Herbart Miftahul Firdaus
 221011402335
@@ -10,7 +10,7 @@ Demo Website:
 https://cafeahmf.free.nf/
 
 
-## ** Aktor & Peran dalam Sistem
+## **Aktor & Peran dalam Sistem**
 1. Customer (Pelanggan)
 Customer merupakan pengguna yang melakukan pemesanan.
 Fungsi yang dapat dilakukan:
@@ -56,11 +56,11 @@ Fungsi yang dapat dilakukan:
 - Mengantarkan pesanan ke meja pelanggan
 - Mengubah status pesanan menjadi diantar
 
-## ** Alur Kerja Sistem
+## **Alur Kerja Sistem**
 1. Customer melakukan pemesanan menu
 2. Pesanan masuk dengan status menunggu
 3. Dapur memproses pesanan -> status diproses
 4. Dapur menyelesaikan pesanan -> status selesai
 5. Waiter mengantar pesanan -> status diantar
 6. Kasir melakukan pembayaran -> status dibayar
-** Customer dapat memantau status pesanan kapan saja
+**Customer dapat memantau status pesanan kapan saja**
