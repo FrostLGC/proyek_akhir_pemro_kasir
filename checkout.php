@@ -28,7 +28,7 @@ foreach ($cart as $c) {
     $total += $c['subtotal'];
 }
 
-$kode = 'C' . date('ymdHis') . rand(10,99);
+$kode = 'C' . rand(1000, 9999);
 
 $meja_sql = $meja ? "'$meja'" : "NULL";
 $cust_sql = $customer_id ? $customer_id : "NULL";
